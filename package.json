@@ -1,0 +1,28 @@
+{
+  "name": "yaml-router",
+  "version": "0.0.1",
+  "description": "Express middleware for keeping routes and controllers seperated",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/olivier1980/yaml-router.git"
+  },
+  "keywords": [
+    "express",
+    "yaml",
+    "routing",
+    "controller",
+    "node"
+  ],
+  "author": "Olivier Droog",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/olivier1980/yaml-router/issues"
+  },
+  "dependencies": {
+    "express-reverse": "~0.3.1"
+  }
+}

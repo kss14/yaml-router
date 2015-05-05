@@ -1,0 +1,14 @@
+home:
+    pattern: /
+    controller: main:home
+    methods: [GET]
+
+about:
+    pattern: /about
+    controller: main:about
+    methods: [GET]
+
+item:
+    pattern: /item/edit/:id?
+    controller: item:index
+    methods: [GET, POST]

@@ -1,0 +1,8 @@
+Editing: {{param}}
+
+<form action="{{url('item', {id: param})}}" method="post">
+    <input type="text" name="foo" value="bar">
+    <input type="submit">
+</form>
+
+Posting this form will only work if we add 'POST' to our 'methods' in the yaml routing file.
