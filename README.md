@@ -80,7 +80,9 @@ Options defaults:
      helperName: 'url' //The function used in templates to call a route. See express-reverse docs.
 }
 ```
+## Test
 
+```npm test```
 
 ## License
 

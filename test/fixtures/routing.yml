@@ -1,0 +1,14 @@
+about:
+    pattern: /about
+    controller: main:about
+    methods: [GET]
+    
+item:
+    pattern: /item
+    controller: main:item
+    methods: [POST]
+    
+param:
+    pattern: /param/:test
+    controller: main:item
+    methods: [GET]
