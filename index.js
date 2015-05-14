@@ -17,8 +17,6 @@ module.exports = function(app, options) {
 };
 
 function initRoutes(app, options) {
-	//Load YAML
-	var routesYaml = yaml.safeLoad(fs.readFileSync(options.routingFile, 'utf8'));
 
 	// Load all controllers
 	//TODO: 
@@ -30,11 +28,14 @@ function initRoutes(app, options) {
 		controllers[name] = require(options.controllerPath +'/'+ file);
 	});
 
-	//Setup routes in the format 'app.method("name", "pattern", function(...)',
-	//based on the YAML routes and controllers.
-	for (var key in routesYaml) {
-		if (routesYaml.hasOwnProperty(key)) {
+
+	var parseYML = function(file) {
+		
+		var routesYaml = yaml.safeLoad(fs.readFileSync(file, 'utf8'));
+		for (var key in routesYaml) {
+			
 			var obj = routesYaml[key];
+
 			var split = obj.controller.split(':'),
 				bundle = split[0],
 				controller = split[1] + 'Controller';
@@ -44,5 +45,9 @@ function initRoutes(app, options) {
 				app[method.toLowerCase()](key, obj.pattern, c[controller] );
 			});
 		}
-	}
+	};
+	
+	//Load YAML
+	parseYML(options.routingFile);
+
 }
