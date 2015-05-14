@@ -37,6 +37,19 @@ item:
     pattern: /item/edit/:id?
     controller: main:item
     methods: [GET, POST]
+
+#load all routes for /api
+api-loader:
+    resource: routes/api.yml
+    prefix: /api
+```
+
+```yaml
+#/app/config/routes/api.yml
+api-get:
+    pattern: /get
+    controller: api:get
+    methods: [GET]
 ```
 
 ```js
@@ -62,6 +75,8 @@ module.exports = function() {
 
 ```
 The controller `main:about` will be parsed so the `aboutController` in `/app/controllers/main.js` is loaded.
+
+Multiple .yml routing files can be loaded using the resource/prefix syntax, see code example above.
 
 See also the `examples` folder in the project.
 

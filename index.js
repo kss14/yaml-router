@@ -2,6 +2,7 @@ var extend = require('node.extend');
 var yaml = require('js-yaml');
 var fs = require('fs');
 var expressReverse = require('express-reverse');
+var path = require('path');
 
 module.exports = function(app, options) {
 
@@ -29,12 +30,20 @@ function initRoutes(app, options) {
 	});
 
 
-	var parseYML = function(file) {
+	var parseYML = function(file, prefix) {
+		
+		prefix = prefix || '';
 		
 		var routesYaml = yaml.safeLoad(fs.readFileSync(file, 'utf8'));
+		
 		for (var key in routesYaml) {
 			
 			var obj = routesYaml[key];
+
+			if (obj.resource) {
+				parseYML(path.dirname(file) + '/' + obj.resource, obj.prefix);
+				continue;
+			}
 
 			var split = obj.controller.split(':'),
 				bundle = split[0],
@@ -42,7 +51,7 @@ function initRoutes(app, options) {
 		 
 			obj.methods.forEach(function(method) {
 				var c = controllers[bundle]();
-				app[method.toLowerCase()](key, obj.pattern, c[controller] );
+				app[method.toLowerCase()](key, prefix + obj.pattern, c[controller] );
 			});
 		}
 	};

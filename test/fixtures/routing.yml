@@ -12,3 +12,8 @@ param:
     pattern: /param/:test
     controller: main:item
     methods: [GET]
+
+
+api-loader:
+    resource: routes/api.yml
+    prefix: /api

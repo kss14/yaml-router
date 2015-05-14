@@ -1,0 +1,4 @@
+api-get:
+    pattern: /get
+    controller: api:get
+    methods: [GET]

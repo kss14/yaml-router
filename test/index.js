@@ -33,6 +33,11 @@ describe('yaml-router', function() {
 		assert.equal(app.locals.url('param', {test: 5}), '/param/5');
 	});
 	
+	it('should find controller functions for yaml loaded through resource syntax', function() {
+		assert.equal(app.locals.url('api-get'), '/api/get');
+	});
+	
+	
 	
 	describe('should render twig templates from controllers', function() {
 		it('GET /about', function(done) {
