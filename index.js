@@ -51,9 +51,18 @@ function initRoutes(app, options) {
 				bundle = split[0],
 				controller = split[1] + 'Controller';
 
+			if (!obj.methods) {
+				throw new Error('No methods defined for controller ' + obj.controller);
+			}
+
 			obj.methods.forEach(function(method) {
 				var c = controllers[bundle]();
-				app[method.toLowerCase()](key, prefix + obj.pattern, c[controller]);
+				var controllerFunction = c[controller];
+				if (!controllerFunction) {
+					throw new Error('No controller found for ' + obj.controller);
+				}
+				
+				app[method.toLowerCase()](key, prefix + obj.pattern, controllerFunction);
 			});
 		}
 	};
