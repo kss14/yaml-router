@@ -26,10 +26,14 @@ function initRoutes(app, options) {
 	//-search subfolders
 
 	var controllers = {};
-	fs.readdirSync(options.controllerPath).forEach(function(file) {
-		var name = file.substr(0, file.indexOf('.'));
-		controllers[name] = require(options.controllerPath + '/' + file);
-	});
+	fs.readdirSync(options.controllerPath)
+		.filter(function(file){
+			return file.indexOf('test.js') === -1 && file.indexOf('spec.js') === -1
+		})
+		.forEach(function(file) {
+			var name = file.substr(0, file.indexOf('.'));
+			controllers[name] = require(options.controllerPath + '/' + file);
+		});
 
 
 	var parseYML = function(file, prefix) {
